@@ -1,0 +1,2 @@
+# ScalaPractice
+実践Scalaとか読んで為になったことを備忘録的にメモ
