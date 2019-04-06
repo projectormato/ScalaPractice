@@ -6,7 +6,7 @@ trait Enumerable[A] {
   def foreach[B](fun: A => B): Unit
 
   final def map[B](f: A => B): List[B] = {
-    var members = Buffer.empty[A]
+    var members = Buffer.empty[B]
     foreach {m =>
       members += f(m)
     }
@@ -32,8 +32,15 @@ trait Enumerable[A] {
 
 class Staff(val name: String, val age: Int)
 
-class Shop(val name: String) extends AnyRef with Enumerable[Staff] with Namable {
-  private[this] val staffs: List[Staff] = List(new Staff("太郎", 18), new Staff("花子", 20))
+class Shop(val name: String) extends AnyRef with Enumerable[Staff] {
+  private[this] val staffs: List[Staff] = List(new Staff("太郎", 18), new Staff("花子", 20), new Staff("次郎", 25))
 
   override def foreach[B](f: Staff => B): Unit = staffs.foreach(f)
+}
+
+object Main extends App {
+  val shop = new Shop("八百屋")
+  val ans = shop.filter(_.age >= 20)
+//  ans.foreach(println)
+  ans.foreach(i => println(i.name, i.age))
 }
