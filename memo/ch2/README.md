@@ -24,7 +24,31 @@ var i: Int = _
 
 ## trait
 Scalaのクラスも、三角継承等の問題があるので、複数継承することは出来ない。そのために、クラスからnewでインスタンス化する機能を省いた、トレイト(trait)という要素を定義できる。  
-todo:traitの例を書く
+
+## 特別なメソッド名
+* apply  
+    オブジェクトに対する関数呼び出しのようなことをするとコンパイラではapplyメソッドを呼び出したと解釈される  
+    `List(1, 2, 3)`は`List.apply(1,2,3)`と解釈される。  
+    ```
+    object Add {
+        def apply(x: Int, y: Int): Int = x+y
+    }
+    ```
+    みたいに定義すると`Add.apply(1,2)`でも`Add(1,2)`でも同じ
+    
+* unary_  
+    unaryのあとに`+-!~`のどれかが付いてると特別なメソッド扱いになる
+    ```
+    class MyString(val content: String){
+        def unary_! : String = "!" + content
+    }
+    ```
+    みたいな定義があると
+    ```
+    val s = new MyString("Taro")
+    !s //!Taro
+    ```
+    みたいな呼び出し方が出来るBooleanの`!flag`みたいなのはこういうので表現されているらしい
 
 ## ケースクラス
 ```scala
