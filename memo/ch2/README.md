@@ -66,4 +66,3 @@ case class Point(x: Int, y: Int)
 
 ## match式(パターンマッチ)
 制御構文の1つで、パターンをマッチさせて色々できる。Javaのswitch文よりもかなり強力
-todo:match式の例を書く
